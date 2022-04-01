@@ -1,11 +1,11 @@
-## **NodeJS + NestJS + GraphQL**
+## **nestjs-graphql-school-management**
 
 > An Open Source repository to study **NestJS** and **Graphql**.
 
-## Setup
+## Run
 
-Start one mongodb container with Docker:
+First, install Docker and Docker Compose. Then, run this command:
 
 ```bash
-$ docker run --name mongo -p 27017:27017 -d mongo
+$ npm run start:dev:watch
 ```
