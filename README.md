@@ -105,3 +105,85 @@ query {
 }
 ```
 
+### Create Student
+
+```gql
+mutation {
+  createStudent(
+    createStudentInput: {
+  		firstName: "John",
+    	lastName: "Doe"
+  	}
+	) {
+    id
+    firstName
+    lastName
+  }
+}
+```
+
+```gql
+# Response
+
+{
+  "data": {
+    "createStudent": {
+      "id": "9372d282-99bb-436e-a6f3-e2c35b7f3655",
+      "firstName": "John",
+      "lastName": "Doe"
+    }
+  }
+}
+```
+
+```gql
+query {
+  students {
+    firstName
+  }
+}
+```
+
+```gql
+# Response
+
+{
+  "data": {
+    "students": [
+      {
+        "firstName": "John"
+      },
+      {
+        "firstName": "Jack"
+      },
+      {
+        "firstName": "Anna"
+      }
+    ]
+  }
+}
+```
+
+### Get Student
+
+```gql
+query {
+  student(id: "9372d282-99bb-436e-a6f3-e2c35b7f3655") {
+    firstName
+    lastName
+  }
+}
+```
+
+```gql
+# Response
+
+{
+  "data": {
+    "student": {
+      "firstName": "John",
+      "lastName": "Doe"
+    }
+  }
+}
+```
