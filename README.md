@@ -1,13 +1,19 @@
-## **nestjs-graphql-school-management**
+<div align='justify'>
 
-> An Open Source repository to study **NestJS** and **Graphql**.
+![](./banner.png)
 
-## Packages
+> A School Management API designed for NestJS studies. Developed using GraphQL, MongoDB and TypeORM.
 
-- class-transformer
-- class-validator
+## **Techs**
 
-## Run
+- NestJS
+- GraphQL
+- TypeORM
+- MongoDB
+- Apollo Server
+
+
+## **Run**
 
 First, install Docker and Docker Compose. Then, run this command:
 
@@ -15,12 +21,10 @@ First, install Docker and Docker Compose. Then, run this command:
 $ npm run start:dev:watch
 ```
 
-## Use
-
 You can access the **Graphql Playground** when the project is running locally. [http://localhost:3000/graphql](http://localhost:3000/graphql)
 
 
-## GraphQL
+## **Endpoints**
 
 ### Create Lesson:
 
@@ -187,3 +191,11 @@ query {
   }
 }
 ```
+
+
+## **References**
+
+- [GraphQL](https://graphql.org/learn/)
+- [NestJS GraphQL](https://docs.nestjs.com/graphql/quick-start)
+
+</div>
