@@ -1,10 +1,10 @@
 {
   "name": "nestjs-graphql-school-management",
   "version": "0.0.1",
-  "description": "",
-  "author": "",
+  "description": "A School Management API designed for NestJS studies. Developed using GraphQL, MongoDB and TypeORM.",
+  "author": "Maurício Romagnoli - x0n4d0 <romagnolimauricio@gmail.com>",
   "private": true,
-  "license": "UNLICENSED",
+  "license": "GNU",
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "nest build",
