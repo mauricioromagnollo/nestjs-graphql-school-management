@@ -2,6 +2,11 @@
 
 > An Open Source repository to study **NestJS** and **Graphql**.
 
+## Packages
+
+- class-transformer
+- class-validator
+
 ## Run
 
 First, install Docker and Docker Compose. Then, run this command:
