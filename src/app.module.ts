@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
-import { LessonModule } from './lesson/lesson.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
-import { Lesson } from './lesson/lesson.entity';
+import { LessonModule } from './modules/lesson/lesson.module';
+import { Lesson } from './modules/lesson/lesson.entity';
 
 @Module({
   imports: [
