@@ -5,6 +5,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { LessonModule } from './modules/lesson/lesson.module';
 import { Lesson } from './modules/lesson/lesson.entity';
+import { StudentModule } from './modules/student/student.module';
+import { Student } from './modules/student/student.entity';
 
 @Module({
   imports: [
@@ -13,13 +15,14 @@ import { Lesson } from './modules/lesson/lesson.entity';
       url: 'mongodb://localhost/school',
       syncronize: true,
       useUnifiedTopology: true,
-      entities: [Lesson],
+      entities: [Lesson, Student],
     }),
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
       autoSchemaFile: true,
     }),
     LessonModule,
+    StudentModule,
   ],
 })
 export class AppModule {}
