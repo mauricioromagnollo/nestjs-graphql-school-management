@@ -2,60 +2,137 @@
 
 ![](./banner.png)
 
+<br>
+
 > A School Management API designed for NestJS studies. Developed using GraphQL, MongoDB and TypeORM.
+
+<br>
 
 ## **Techs**
 
-- NestJS
-- GraphQL
-- TypeORM
-- MongoDB
-- Apollo Server
+- [NestJS](https://nestjs.com/)
+- [GraphQL](https://graphql.org/)
+- [TypeORM](https://typeorm.io/)
+- [MongoDB](https://www.mongodb.com/)
+- [Apollo Server](https://www.apollographql.com/docs/apollo-server/getting-started/)
 
+<br>
 
 ## **Run**
 
-First, install Docker and Docker Compose. Then, run this command:
+- Install [Docker](https://docs.docker.com/engine/install/) and [Docker Compose](https://docs.docker.com/compose/install/);
+- Run with Docker:
 
 ```bash
-$ npm run start:dev:watch
+docker-compose up --build -d
 ```
 
-You can access the **Graphql Playground** when the project is running locally. [http://localhost:3000/graphql](http://localhost:3000/graphql)
+If you have nodejs installed with version +16.x, you can also run it using the command:
 
+```bash
+npm run dev
+```
 
-## **Endpoints**
+After running, you can access the **Graphql Playground**. [http://localhost:3000/graphql](http://localhost:3000/graphql)
 
-### Create Lesson:
+<br>
+
+## **Available Queries**
+
+### Create Lesson
 
 ```gql
 mutation {
   createLesson(
     createLessonInput: {
-      name: "Physycs Class",
-      startDate: "2022-04-02T04:47:30.079Z",
-      endDate: "2022-04-02T05:47:30.079Z"
+      name: "Math Class",
+      startDate: "2022-04-02T04:00:00.079Z",
+      endDate: "2022-04-02T05:00:00.079Z",
+      students: [
+        "0878ef35-5cde-49bc-9f7a-b6d75a3509f8",
+        "0878ef35-5cde-49bc-9f7a-b6d75a3509f8"
+      ]
     }
   ) {
+    id
     name
-	id
+    startDate
+    endDate
+    students {
+      firstName
+      lastName
+    }
   }
 }
 ```
-```gql
-# Response
+
+```json
+// Response
 
 {
   "data": {
     "createLesson": {
-      "name": "Physycs Class",
-      "id": "8b36064b-0404-4fb9-b5c5-c44674326f43"
+      "id": "e8af5d90-fa0e-4705-8ddd-4560bea8a3b4",
+      "name": "Math Class",
+      "startDate": "2022-04-02T04:00:00.079Z",
+      "endDate": "2022-04-02T05:00:00.079Z",
+      "students": [
+        {
+          "firstName": "John",
+          "lastName": "Doe",
+        },
+        {
+          "firstName": "Mary",
+          "lastName": "Jane",
+        }
+      ]
     }
   }
 }
 ```
 
-### Get Lessons:
+### Assign Students To Lesson
+
+```gql
+mutation {
+  assignStudentsToLesson(
+    assignStudentsToLessonInput: {
+      lessonId: "e8af5d90-fa0e-4705-8ddd-4560bea8a3b4",
+      studentsId: [
+        "0878ef35-5cde-49bc-9f7a-b6d75a3509f8",
+        "0878ef35-5cde-49bc-9f7a-b6d75a3509f8"
+      ]
+    }
+  ) {
+    name
+    students {
+      firstName
+    }
+  }
+}
+```
+
+```json
+// Response
+
+{
+  "data": {
+    "assignStudentsToLesson": {
+      "name": "Math Class",
+      "students": [
+        {
+          "firstName": "John"
+        },
+        {
+          "firstName": "Mary"
+        },
+      ]
+    }
+  }
+}
+```
+
+### Get Lessons
 
 ```gql
 query {
@@ -65,45 +142,42 @@ query {
 }
 ```
 
-```gql
-# Response
+```json
+// Response
 
 {
   "data": {
     "lessons": [
       {
-        "name": "Physycs Class"
-      },
-      {
         "name": "Math Class"
       },
       {
-        "name": "Bio Class"
-      }
+        "name": "NestJS Class"
+      },
     ]
   }
 }
 ```
 
-### Get Lesson:
+### Get Lesson
 
 ```gql
 query {
-  lesson(id: "42303bff-a9b6-4e1a-82d4-fffba3483d7d") {
+  lesson(id: "e8af5d90-fa0e-4705-8ddd-4560bea8a3b4") {
     name
     startDate
   }
 }
 ```
 
-```gql
-# Response
+```json
+// Response
 
 {
   "data": {
     "lesson": {
-      "name": "Physycs Class",
-      "startDate": "2022-04-02T04:47:30.079Z"
+      "name": "Math Class",
+      "startDate": "2022-04-02T04:00:00.079Z"
     }
   }
 }
@@ -115,10 +189,10 @@ query {
 mutation {
   createStudent(
     createStudentInput: {
-  		firstName: "John",
-    	lastName: "Doe"
-  	}
-	) {
+      firstName: "John",
+      lastName: "Doe"
+    }
+  ) {
     id
     firstName
     lastName
@@ -126,19 +200,21 @@ mutation {
 }
 ```
 
-```gql
-# Response
+```json
+// Response
 
 {
   "data": {
     "createStudent": {
-      "id": "9372d282-99bb-436e-a6f3-e2c35b7f3655",
+      "id": "0878ef35-5cde-49bc-9f7a-b6d75a3509f8",
       "firstName": "John",
       "lastName": "Doe"
     }
   }
 }
 ```
+
+### Get Students
 
 ```gql
 query {
@@ -148,8 +224,8 @@ query {
 }
 ```
 
-```gql
-# Response
+```json
+// Response
 
 {
   "data": {
@@ -158,10 +234,7 @@ query {
         "firstName": "John"
       },
       {
-        "firstName": "Jack"
-      },
-      {
-        "firstName": "Anna"
+        "firstName": "Mary"
       }
     ]
   }
@@ -172,15 +245,15 @@ query {
 
 ```gql
 query {
-  student(id: "9372d282-99bb-436e-a6f3-e2c35b7f3655") {
+  student(id: "0878ef35-5cde-49bc-9f7a-b6d75a3509f8") {
     firstName
     lastName
   }
 }
 ```
 
-```gql
-# Response
+```json
+// Response
 
 {
   "data": {
@@ -192,6 +265,7 @@ query {
 }
 ```
 
+<br>
 
 ## **References**
 
