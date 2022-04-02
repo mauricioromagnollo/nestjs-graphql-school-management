@@ -51,6 +51,36 @@ mutation {
 }
 ```
 
+### Get Lessons:
+
+```gql
+query {
+  lessons {
+    name
+  }
+}
+```
+
+```gql
+# Response
+
+{
+  "data": {
+    "lessons": [
+      {
+        "name": "Physycs Class"
+      },
+      {
+        "name": "Math Class"
+      },
+      {
+        "name": "Bio Class"
+      }
+    ]
+  }
+}
+```
+
 ### Get Lesson:
 
 ```gql
@@ -74,3 +104,4 @@ query {
   }
 }
 ```
+
