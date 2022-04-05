@@ -1,13 +1,25 @@
-version: '3.9'
+version: '3'
 
 services:
-  mongodb:
+  db:
     image: mongo:5.0
-    container_name: mongo
+    container_name: school-management-mongodb
     ports:
-      - 27017:27017
+      - ${MONGODB_PORT}:27017
+    restart: always
+
+  app:
+    image: school-management-app
+    build: .
+    tty: true
+    links:
+      - db
     volumes:
-      - .docker/data/db:/data/db
-    # environment:
-    #   - MONGO_INITDB_ROOT_USERNAME=root
-    #   - MONGO_INITDB_ROOT_PASSWORD=root
+      - .:/nestjs-task-manager
+      - ./node_modules:/nestjs-task-manager/node_modules
+    ports:
+      - ${PORT}:3000
+    depends_on:
+      - db
+    restart: always
+    command: bash -c "npm run start:dev"
