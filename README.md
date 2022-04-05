@@ -10,6 +10,7 @@
 
 ## **Techs**
 
+- [Docker](https://www.docker.com/)
 - [NestJS](https://nestjs.com/)
 - [GraphQL](https://graphql.org/)
 - [TypeORM](https://typeorm.io/)
@@ -24,7 +25,7 @@
 - Run with Docker:
 
 ```bash
-docker-compose up --build -d
+docker-compose --env-file ./.env.dev up --build -d
 ```
 
 If you have nodejs installed with version +16.x, you can also run it using the command:
@@ -269,7 +270,6 @@ query {
 
 ## **References**
 
-- [GraphQL](https://graphql.org/learn/)
-- [NestJS GraphQL](https://docs.nestjs.com/graphql/quick-start)
+- [NestJS - Zero to Hero](https://www.udemy.com/course/nestjs-zero-to-hero/?utm_source=adwords&utm_medium=udemyads&utm_campaign=WebDevelopment_v.PROF_la.EN_cc.BR_ti.8322&utm_content=deal4584&utm_term=_._ag_108455848694_._ad_467154447027_._kw__._de_c_._dm__._pl__._ti_dsa-774930035449_._li_9100507_._pd__._&matchtype=&gclid=EAIaIQobChMIyOqbvu_79gIVwgqRCh1SrgtnEAAYASAAEgLfwfD_BwE)
 
 </div>
